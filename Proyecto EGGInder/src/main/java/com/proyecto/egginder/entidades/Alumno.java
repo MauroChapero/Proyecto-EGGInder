@@ -21,7 +21,7 @@ public class Alumno {
     private String nombre;
     private String apellido;
     private String email;
-    private String password;
+    private String clave;
     
     //ROL
     @Enumerated(EnumType.STRING)
@@ -40,11 +40,11 @@ public class Alumno {
     }
     
     //CONSTRUCTOR PARAMETRIZADO
-    public Alumno(String nombre, String apellido, String email, String password, Role rol, Voto votoAprender, Voto votoEnseniar) {
+    public Alumno(String nombre, String apellido, String email, String clave, Role rol, Voto votoAprender, Voto votoEnseniar) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
-        this.password = password;
+        this.clave = clave;
         this.rol = rol;
         this.votoAprender = votoAprender;
         this.votoEnseniar = votoEnseniar;
@@ -83,12 +83,12 @@ public class Alumno {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getClave() {
+        return clave;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 
     public Role getRol() {
