@@ -25,7 +25,7 @@ public class MateriaServicio {
     }
     
     @Transactional
-    public Materia editarMateria(String nombre) throws Exception {
+    public Materia editarMateria(String id, String nombre) throws Exception {
         validarMateria(nombre);
         Optional <Materia> opt = materiaRepository.findById(id);
         
