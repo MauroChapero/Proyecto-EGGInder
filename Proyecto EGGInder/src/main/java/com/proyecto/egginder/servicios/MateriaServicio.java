@@ -25,14 +25,12 @@ public class MateriaServicio {
     }
     
     @Transactional
-    public Materia editarMateria(String id, String nombre) throws Exception {
+    public Materia editarMateria(String nombre, String id) throws Exception {
         validarMateria(nombre);
         Optional <Materia> opt = materiaRepository.findById(id);
-        
         if(opt.isPresent()) {
             Materia materia = opt.get();
             materia.setNombre(nombre);
-            
             return materiaRepository.save(materia);
         } else { 
             throw new Exception("No se halló la materia.");
@@ -56,8 +54,16 @@ public class MateriaServicio {
     }
     
     @Transactional
-    public List<Materia> listarMaterias(String nombre) {
+    public List<Materia> listarMaterias() {
         return materiaRepository.findAll();
+    }
+    
+    @Transactional
+    public Materia getById(String id) throws Exception{
+        if (materiaRepository.getById(id) == null){
+            throw new Exception("");
+        }
+        return materiaRepository.getById(id);
     }
     
     @Transactional
