@@ -1,0 +1,104 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+body {
+    background-color: #ffcf00;
+    font-family: Arial, Helvetica, sans-serif;
+    background-attachment: fixed;
+}
+
+.form-login {
+    background: white;
+    padding: 30px;
+    width: 400px;
+    margin: auto;
+    margin-top: 250px;
+    border-radius: 6px;
+}
+
+.contenedor {
+    width: 100%;
+    padding: 15px;
+}
+
+.titulo-bienvenido {
+    color: white;
+    background-color: black;
+    text-align: center;
+    padding: 6px;
+    margin-bottom: 25px;
+}
+
+.contenerdor,.contenedor-input {
+    font-size: 14px;
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #999 /*#ffcf00*/;
+    margin-bottom: 20px;
+    border-radius: 20px;
+}
+
+.input-login {
+    border: none;
+    outline: none;
+}
+
+i {
+    min-width: 50px;
+    text-align: center;
+    color: #999;
+}
+
+.btn-login {
+    background-color: #ffcf00;
+    outline: none;
+    border: none;
+    border-radius: 4cm;
+    width: 100%;
+    padding: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 16px 0;
+}
+
+header {
+    background-color: #ffffff;
+    height: 90px;
+    position: fixed; /*posicion fija*/
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.nav {
+    display: flex; /*coloca celdas como cajas*/
+    justify-content: space-between;
+
+}
+
+.nav-link {
+    color: black;
+    text-decoration: none;
+}
+.nav-menu {
+    display: flex;
+    margin-right: 40px; /*espacio entre palabras*/
+    list-style:none; /*Quito puntitos*/
+}
+.nav-menu-item {
+    font-size: 18px;
+    margin: 0 10px;
+    line-height: 80px; 
+    text-transform: uppercase; 
+    width: max-content; /*palabra entera*/
+
+}
+.nav-menu-link {
+    padding: 8px 12px; /*ar/ab izq/der*/
+    border-radius: 5px;
+}
+.nav-menu-link:hover {
+    background-color: #ffcf00; /*estilo cuando paso el mouse*/
+    transition: 0.5s; /*Transicion suave entre link y link del menu*/
+}
