@@ -1,35 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyecto egginder</title>
-    <link rel="stylesheet" href="/style-main.css">
+    <link rel="stylesheet" href="/css/style-registro.css">
+    <script src="https://kit.fontawesome.com/cf27837293.js"></script>
 </head>
 <body>
     <header class="header">
         <nav class="nav">
-            <a href="https://www.egg-inder.com.ar"><img src="proyecto/logo egginder.png" align-left width="150" height="120"></a>
+            <a th:href="@{/inicio}"><img src="/img/logo egginder.png"></a>
             <ul class="nav-menu">
-                <li class="nav-menu-item"><a href="#" class="nav-menu-link nav-link">misión</a></li>
-                <li class="nav-menu-item"><a href="#" class="nav-menu-link nav-link">mi perfil</a></li>
-                <li class="nav-menu-item"><a href="#" class="nav-menu-link nav-link">iniciar sesión</a></li>
+                <li class="nav-menu-item"><a th:href="@{/inicio}" class="nav-menu-link nav-link">inicio</a></li>
+                <li class="nav-menu-item"><a th:href="@{/perfil}" class="nav-menu-link nav-link">mi perfil</a></li>
+                <!--<li class="nav-menu-item"><a th:href="@{/materia/lista}" class="nav-menu-link nav-link">Materias</a></li>-->
+                <li class="nav-menu-item"><a th:href="@{/login}" class="nav-menu-link nav-link">iniciar sesión</a></li>
             </ul>
-        </nav>  
+        </nav>
         <section class="form-register">
-            <div class="rgtr">
+            <div class="rgtr">  
                 <h2>REGISTRATE</h2>
-            </div>        
-            <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre">
-            <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="Ingrese su Apellido">
-            <input class="controls"  type="email" name="correo" id="correo" placeholder="Ingrese su Correo">
-            <input class="controls"  type="password" name="password" id="contraseña" placeholder="Ingrese su Contraseña">
-            <input class="controls"  type="password" name="password" id="confirme-contraseña" placeholder="Confirme su Contraseña">
-            <button class="btn-register"><b>¡LISTO!</b></button>
-            <p><a href="#">¿Ya tenes Cuenta?</a></p>
+            </div>
+            <form th:action="@{/registro}" method="POST">
+                <div class="contenedor-registro">
+                    <div class="contenedor-input">
+                        <i class="fa-solid fa-user"></i>
+                        <input class="controls" type="text" name="nombre" id="nombres" placeholder="Ingrese su Nombre">
+                    </div>
+                    <div class="contenedor-input">
+                        <i class="fa-solid fa-user"></i>
+                        <input class="controls" type="text" name="apellido" id="apellidos" placeholder="Ingrese su Apellido">
+                    </div>
+                    <div class="contenedor-input">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input class="controls"  type="email" name="email" id="correo" placeholder="Ingrese su Correo">
+                    </div>
+                    <div class="contenedor-input">
+                        <i class="fa-solid fa-unlock"></i>
+                        <input class="controls"  type="password" name="clave1" id="contraseña" placeholder="Ingrese su Contraseña">
+                    </div>
+                    <div class="contenedor-input">
+                        <i class="fa-solid fa-unlock"></i>
+                        <input class="controls"  type="password" name="clave2" id="confirme-contraseña" placeholder="Confirme su Contraseña">
+                    </div>
+                    <div>
+                        <button class="btn-register"><b>¡LISTO!</b></button>
+                    </div>
+                </div>
+            </form>
+            <div class="parrafo">
+                <p><i>¿Ya tenes cuenta? <a th:href="@{/login}">Iniciar Sesión</a></i></p>
+            </div>
+            <article th:if="${exito}!=null">
+                <h5 class="validacionExito">EXITO</h5>
+                <p th:text="${exito}"></p>
+            </article>
+            <article th:if="${error}!=null">
+                <h4 class="validacionError">¡Ha ocurrido un error!</h4>
+                <p th:text="${error}"></p>
+            </article>
         </section>
     </header>
-    
 </body>
 </html>

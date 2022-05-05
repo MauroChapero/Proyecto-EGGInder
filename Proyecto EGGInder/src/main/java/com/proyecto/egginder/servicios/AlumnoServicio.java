@@ -4,14 +4,25 @@ import com.proyecto.egginder.entidades.Alumno;
 import com.proyecto.egginder.entidades.Voto;
 import com.proyecto.egginder.enumeraciones.Role;
 import com.proyecto.egginder.repositorios.AlumnoRepositorio;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Service
-public class AlumnoServicio {
+public class AlumnoServicio implements UserDetailsService{
     
     @Autowired
     private AlumnoRepositorio alumnoRepositorio;
@@ -20,12 +31,15 @@ public class AlumnoServicio {
     public Alumno crearPerfil(String nombre, String apellido, String email, String clave1, String clave2) throws Exception{
         //Validar los datos del formulario para crear un alumno
         validar(nombre, apellido, email, clave1, clave2);
+        //Encriptador de password
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         //Creacion del alumno y se guarda en el repositorio
         Alumno alumno = new Alumno();
         alumno.setNombre(nombre);
         alumno.setApellido(apellido);
         alumno.setEmail(email);
-        alumno.setClave(clave1);
+        //Encripto la clave con el metodo encode()
+        alumno.setClave(encoder.encode(clave1));
         alumno.setRol(Role.USUARIO);
         return alumnoRepositorio.save(alumno);
     }
@@ -34,16 +48,18 @@ public class AlumnoServicio {
     public Alumno modificarPerfil(String id, String nombre, String apellido, String email, String clave1, String clave2) throws Exception{
         //Validar los datos del formulario para modificar al alumno
         validar(nombre, apellido, email, clave1, clave2);
+        //Encriptador de password
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         //Busqueda del alumno
-        Optional<Alumno> optional = alumnoRepositorio.findById(id);
+        Optional<Alumno> optional = alumnoRepositorio.findById(id);;
         //Si se encuentra un alumno se lo modifica y se guarda en el repositorio
         if (optional.isPresent()) {
             Alumno alumno = optional.get();
             alumno.setNombre(nombre);
             alumno.setApellido(apellido);
             alumno.setEmail(email);
+            //Encripto la clave con el metodo encode()
             alumno.setClave(clave1);
-            alumno.setClave(clave2);
             return alumnoRepositorio.save(alumno);
         //Si no se encuentra al alumno, se devuelve una Exception indicandolo y se termina el metodo
         } else {
@@ -81,6 +97,10 @@ public class AlumnoServicio {
         //Trae un alumno por su id
         return alumnoRepositorio.getById(id);
     }
+    
+    public Alumno findByEmail(String email){
+        return alumnoRepositorio.findByEmail(email);
+    }
 
     public void validar(String nombre, String apellido, String email, String clave1, String clave2) throws Exception{
         if (nombre == null || nombre.trim().isEmpty()) {
@@ -92,6 +112,9 @@ public class AlumnoServicio {
         if (email == null || email.trim().isEmpty()) {
             throw new Exception("Email no puede estar vacio.");
         }
+        if (alumnoRepositorio.findByEmail(email)!=null) {
+            throw new Exception("Ya existe un usuario con ese correo");
+        }
         if (clave1 == null || clave2 == null || clave2.trim().isEmpty() || clave1.trim().isEmpty()) {
             throw new Exception("La constraseña no puede estar vacia.");
         }
@@ -102,23 +125,32 @@ public class AlumnoServicio {
             throw new Exception("La contraseña debe contener entre 8 y 16 caracteres");
         }
     }
+
+    // Metodo abstracto de la interfaz
+    // Va a encargarse de crear una sesion, conceder permisos y validar datos
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        // Asignamos al usuario con el correo
+        Alumno usuario = alumnoRepositorio.findByEmail(email);
+        // Si hay un usuario con ese correo, entramos en la condicional
+        if (usuario!=null) {
+            // Creamos una lista de permisos
+            List<GrantedAuthority> permisos = new ArrayList<>();
+            
+            //Otorgamos los permisos a un usuario segun su ROLE
+            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_"+usuario.getRol());
+            //Los agregamos a la lista de permisos
+            permisos.add(p1);
+            
+            //En esta parte nos permite guardar el OBJETO USUARIO LOG para despues usarse
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+            HttpSession session = attr.getRequest().getSession(true);
+            session.setAttribute("usuariosession", usuario);
+            
+            User user = new User(usuario.getEmail(), usuario.getClave(), permisos);
+            return user;
+        } else {
+            return null;
+        }
+    }
 }
-/*
-//ATRIBUTOS
-    private String nombre;
-    private String apellido;
-    private String email;
-    private String clave;
-    
-    //ROL
-    @Enumerated(EnumType.STRING)
-    private Role rol;
-    
-    //VOTO DEL ALUMNO DE LAS MATERIAS A APRENDER
-    @OneToOne
-    private Voto votoAprender;
-    
-    //VOTO DEL ALUMNO DE LAS MATERIAS A ENSEÑAR
-    @OneToOne
-    private Voto votoEnseniar;
-*/

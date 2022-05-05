@@ -11,6 +11,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AlumnoRepositorio extends JpaRepository<Alumno, String>{
 
+    @Query("SELECT a FROM Alumno a WHERE a.email = :email")
+    public Alumno findByEmail(@Param("email") String email);
+    
     @Query("SELECT a FROM Alumno a WHERE a.votoAprender.materia = :materia")
     public List<Alumno> buscarPorVotosAprender(@Param("materia") Materia materia);
     

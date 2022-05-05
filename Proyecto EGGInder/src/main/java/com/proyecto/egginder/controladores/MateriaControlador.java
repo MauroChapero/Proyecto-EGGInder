@@ -20,7 +20,7 @@ public class MateriaControlador {
     MateriaServicio materiaService;
     
     //Vista del formulario para ver materia. th:href="@{/materia/formulario}"
-    @GetMapping("/formulario")
+    @GetMapping("/registrar")
     public String formularioMateria() {
         return "añadirMateria.html";
     }

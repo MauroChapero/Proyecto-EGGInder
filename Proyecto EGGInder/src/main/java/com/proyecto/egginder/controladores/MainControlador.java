@@ -18,7 +18,12 @@ public class MainControlador {
     
     @GetMapping("/")
     public String redirectRegistro(){
-        return "redirect:/registro";
+        return "redirect:/login";
+    }
+    
+    @GetMapping("/login")
+    public String login(){ // FALTA FORMULARLO PARA SECURITY
+        return "login";
     }
     
     @GetMapping("/registro")
