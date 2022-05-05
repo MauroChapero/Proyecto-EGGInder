@@ -1,0 +1,274 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+nav{
+    display: inline-block;
+    align-content: right;
+   
+}
+
+
+main{
+
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 90px 20px 0;
+    background-color: #ffcf00;
+}
+
+
+
+ section{
+
+    width: 300px;
+    padding: 20px;
+    border-radius: 6px;
+    margin-top: 20px;
+    margin-left: 50px;
+   
+}
+
+article{
+
+    margin-top: 100px;
+    width: 300px;
+    background-color: rgba(255,255,255,0.6);
+    padding: 20px;
+    margin-top: 100px;
+    border-radius: 10px;
+    margin-top: 30px;
+    margin-left: 50px;
+
+
+}
+
+h3{
+
+    font-weight:bold;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+
+
+}
+
+
+
+button{
+
+    background-color: #ffcf00;   
+    border: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    border-color: #d8d8d8;
+    border-style: solid;
+    border-radius:35px;
+
+    padding-top:15px;
+    padding-bottom:15px;
+    padding-left:40px;
+    padding-right:40px;
+
+    margin-left: 50px;
+    margin-bottom: 30px;  
+    
+}
+
+p{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 10px;
+    
+}
+
+
+aside{
+    position: absolute;
+    
+    position: right(-200px);
+    position: top(-100px);
+    margin-left: 50px;
+
+}
+
+
+.redes{
+
+    width: 50px;
+    height: 50px;
+
+}
+
+
+.header {
+    background-color: #ffffff;
+    height: 90px;
+    position: fixed; /*posicion fija*/
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.nav {
+    display: flex; /*coloca celdas como cajas*/
+    justify-content: space-between;
+ 
+}
+ 
+.nav-link {
+    color: black;
+    text-decoration: none;
+}
+.nav-menu {
+    display: flex;
+    margin-right: 40px; /*espacio entre palabras*/
+    list-style:none; /*Quito puntitos*/
+}
+.nav-menu-item {
+    font-size: 18px;
+    margin: 0 10px;
+    line-height: 80px;
+    text-transform: uppercase;
+    width: max-content; /*palabra entera*/
+ 
+}
+.nav-menu-link {
+    padding: 8px 12px; /*ar/ab izq/der*/
+    border-radius: 5px;
+}
+.nav-menu-link:hover {
+    background-color: #ffcf00; /*estilo cuando paso el mouse*/
+    transition: 0.5s; /*Transicion suave entre link y link del menu*/
+}
+
+
+
+/*Personalizar un SELECT */
+.content-input input,
+.content-select select{
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+
+.content-select select::-ms-expand {
+    display: none;
+}
+
+
+
+.content-select{
+	max-width: 250px;
+	position: relative;
+}
+ 
+.content-select select{
+	display: inline-block;
+	width: 100%;
+	cursor: pointer;
+  	padding: 7px 10px;
+  	height: 42px;
+  	outline: 0; 
+  	border: 0;
+	border-radius: 0;
+	background: #f0f0f0;
+	color: #7b7b7b;
+	font-size: 1em;
+	color: #999;
+	font-family: 
+	'Quicksand', sans-serif;
+	border:2px solid rgba(0,0,0,0.2);
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.25s ease;
+}
+ 
+.content-select select:hover{
+	background:#ffcf00;
+}
+ 
+/* 
+Creamos la fecha que aparece a la izquierda del select.
+Realmente este elemento es un cuadrado que sólo tienen
+dos bordes con color y que giramos con transform: rotate(-45deg);
+*/
+.content-select i{
+	position: absolute;
+	right: 20px;
+	top: calc(50% - 13px);
+	width: 16px;
+	height: 16px;
+	display: block;
+	border-left:4px solid black;
+	border-bottom:4px solid black;
+	transform: rotate(-45deg); /* Giramos el cuadrado */
+	transition: all 0.25s ease;
+}
+ 
+.content-select:hover i{
+	margin-top: 3px;
+}
+
+
+
+.contenedor{
+
+    display: flex;
+    margin-left: 350px;
+   
+}
+
+.tutor {
+    margin-left: 80px;
+    margin-top: 0px;
+}
+
+
+
+#divBoton{
+    margin-top: 0px;
+    margin-left: 500px;
+}
+
+
+#tutor{
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: xx-large;
+    font-weight: bold;
+    font-style: oblique;
+
+
+
+}
+
+#letra{
+
+    margin-top: 20px;
+    color: gray;
+    margin-bottom: 20px;
+}
+
+
+
+
+#logo{
+
+    width: 250px;
+    height: 220px;
+    background-color: white;
+    border-radius: 50%;
+    display: inline-block;
+    margin-bottom: 5px;
+    
+}
+
+#botonfinal{
+
+    margin-top: 20px;
+}
+
+
+
