@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/cf27837293.js"></script>
     <title>Proyecto egginder</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/Proyecto EGGInder/src/main/resources/static/css/style-registro.css">
 </head>
 <body>
     <header class="header">
@@ -18,18 +19,37 @@
             </ul>
     </header>
     <main>
-        <section class="form-register">
+        <form class="form-register" action="#" method="post">
         <div class="rgtr">
             <h2>REGISTRATE</h2>
-        </div>        
-        <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre">
-        <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="Ingrese su Apellido">
-        <input class="controls"  type="email" name="correo" id="correo" placeholder="Ingrese su Correo">
-        <input class="controls"  type="password" name="password" id="contraseña" placeholder="Ingrese su Contraseña">
-        <input class="controls"  type="password" name="password" id="confirme-contraseña" placeholder="Confirme su Contraseña">
-        <button class="btn-register"><b>¡LISTO!</b></button>
-        <p><a href="#">¿Ya tenes Cuenta?</a></p>
-        </section>
+        </div> 
+        <div class="contenedor-registro"> 
+            <div class="contenedor-input">
+                <i class="fa-solid fa-user"></i>
+                <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre">
+            </div>     
+            <div class="contenedor-input">
+                <i class="fa-solid fa-user"></i>            
+                <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="Ingrese su Apellido">
+            </div>
+            <div class="contenedor-input">
+                <i class="fa-solid fa-envelope"></i>
+                <input class="controls"  type="email" name="correo" id="correo" placeholder="Ingrese su Email">
+            </div>
+            <div class="contenedor-input">
+                <i class="fa-solid fa-unlock"></i>
+                <input class="controls"  type="password" name="password" id="contraseña" placeholder="Ingrese su contraseña">
+            </div>
+            <div class="contenedor-input">
+                <i class="fa-solid fa-unlock"></i>
+                <input class="controls"  type="password" name="password" id="confirme-contraseña" placeholder="Confirme su contraseña">
+            </div>
+            <button class="btn-register">
+                <b>¡LISTO!</b>
+            </button>
+            <p><i>¿Ya tenes cuenta? <a href="#">Iniciar Sesión</a></i></p>
+        </div>
+</form>
     </main>
     
 </body>
