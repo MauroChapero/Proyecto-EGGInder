@@ -7,13 +7,11 @@ package com.proyecto.egginder.controladores;
 
 import com.proyecto.egginder.Servicios.VotoServicio;
 import com.proyecto.egginder.entidades.Materia;
-import com.proyecto.egginder.entidades.Voto;
-import java.util.List;
+import com.proyecto.egginder.servicios.MateriaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,23 +26,27 @@ public class VotoControlador {
     @Autowired
     private VotoServicio votoService;
     
+    @Autowired
+    private MateriaServicio materiaServicio;
+    
     @GetMapping("/formulario")
     public String index(){
-        return "guardarVoto.html";
+        return "/test/guardarVoto.html";
     }
     
-     @PostMapping("/save")
-    public String saveVoto(ModelMap model, @RequestParam Boolean voto,@RequestParam Materia materia) throws Exception {
+     @PostMapping("/formulario")
+    public String saveVoto(ModelMap model, @RequestParam String nombreMateria) throws Exception {
         try {
-            votoService.save(voto, materia);
-            model.put("añadido", "Voto añadido.");
-            return "guardarVoto.html";
+            Materia materia = materiaServicio.buscarPorNombre(nombreMateria);
+            votoService.save(materia);
+            model.put("exito", "Voto añadido.");
+            return "/test/guardarVoto.html";
         } catch (Exception e) {
             model.put("error", "No se pudo Guardar el voto.");
-            return "guardarVoto.html";
+            return "/test/guardarVoto.html";
         }
     }
-    @GetMapping("/lista")
+    /*@GetMapping("/lista")
     public String listarVotos (ModelMap model) throws Exception {
         try {
             List<Voto> listaVotos = votoService.findAll();
@@ -102,5 +104,5 @@ public class VotoControlador {
         }
     }
 
-
+*/
 }

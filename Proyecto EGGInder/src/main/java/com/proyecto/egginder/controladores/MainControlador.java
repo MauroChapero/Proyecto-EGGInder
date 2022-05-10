@@ -15,25 +15,35 @@ public class MainControlador {
 
     @Autowired
     private AlumnoServicio alumnoServicio;
-    
+
     @GetMapping("/")
-    public String redirectRegistro(){
-        return "redirect:/login";
+    public String index(@RequestParam(required = false) String login, ModelMap model) { // FALTA FORMULARLO PARA SECURITY
+        if (login != null) {
+            return "redirect:/registro";
+        } else {
+            return "/login";
+        }
     }
-    
+
     @GetMapping("/login")
-    public String login(){ // FALTA FORMULARLO PARA SECURITY
+    public String login(@RequestParam(required = false) String error, @RequestParam(required = false) String logout, ModelMap model) {
+        if (error != null) {
+            model.put("error", "Usuario o Contraseña incorrectos");
+        }
+        if (logout != null) {
+            model.put("logout", "Desconectado correctamente");
+        }
         return "login";
     }
     
     @GetMapping("/registro")
-    public String formularioPerfil(){
+        public String formularioPerfil() {
         return "Proyecto main1";
     }
-    
+
     @PostMapping("/registro")
-    public String registrarPerfil(ModelMap model, @RequestParam String nombre, @RequestParam String apellido, 
-            @RequestParam String email, @RequestParam String clave1, @RequestParam String clave2){
+        public String registrarPerfil(ModelMap model, @RequestParam String nombre, @RequestParam String apellido,
+            @RequestParam String email, @RequestParam String clave1, @RequestParam String clave2) {
         try {
             alumnoServicio.crearPerfil(nombre, apellido, email, clave1, clave2);
             model.put("exito", "Perfil creado exitosamente!");
