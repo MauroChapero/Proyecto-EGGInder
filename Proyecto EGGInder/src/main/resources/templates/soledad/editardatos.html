@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <title>select voto personalizado</title>
+    <link rel="stylesheet" href="/src/main/resources/static/css/style-votos.css" />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <a href="#"
+          ><img src="/src/main/resources/static/img/logo egginder.png" align-left width="150" height="120"
+        /></a>
+        <ul class="nav-menu">
+          <li class="nav-menu-item">
+            <a href="#" class="nav-menu-link nav-link">inicio</a>
+          </li>
+          <li class="nav-menu-item">
+            <a href="#" class="nav-menu-link nav-link">mi perfil</a>
+          </li>
+          <li class="nav-menu-item">
+            <a href="#" class="nav-menu-link nav-link">Cerrar sesión</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <br>
+      <section class="form-editar">
+        <div class="edit">  
+            <h2>Editar datos personales</h2>
+        </div>
+        <br>
+        <form class="editardatos">
+            <div class="contenedor-datos">
+                <div class="contenedor-input">
+                    <i class="fa-solid fa-user"></i>
+                    <input class="controls" type="text" name="nombre" id="nombres" placeholder="Nombre">
+                </div>
+                <div class="contenedor-input">
+                    <i class="fa-solid fa-user"></i>
+                    <input class="controls" type="text" name="apellido" id="apellidos" placeholder="Apellido">
+                </div>
+                <div class="contenedor-input">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input class="controls"  type="email" name="email" id="correo" placeholder="Correo">
+                </div>
+                <br>
+                <div class="confirme">
+                  <h3>Para confirmar los cambios ingrese su contraseña</h3>
+                </div>
+                <br>
+                <div class="contenedor-input">
+                    <i class="fa-solid fa-unlock"></i>
+                    <input class="controls"  type="password" name="clave1" id="contraseña" placeholder="Ingrese su Contraseña">
+                </div>
+                <div class="contenedor-input">
+                    <i class="fa-solid fa-unlock"></i>
+                    <input class="controls"  type="password" name="clave2" id="confirme-contraseña" placeholder="Confirme su Contraseña">
+                </div>
+                <br>
+                <br>
+                <div>
+                    <button class="btn-editar"><b>¡LISTO!</b></button>
+                </div>
+            </div>
+        </form>
+
+    </main>
+    <footer>
+  
+    </footer>
+  </body>
+</html>

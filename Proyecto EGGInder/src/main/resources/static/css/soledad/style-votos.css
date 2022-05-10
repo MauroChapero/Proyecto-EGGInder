@@ -1,0 +1,70 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 90px 20px 0;
+    background-color: #ffcf00;
+}
+.header {
+    background-color: #ffffff;
+    height: 90px;
+    position: fixed; /*posicion fija*/
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.nav {
+    display: flex; /*coloca celdas como cajas*/
+    justify-content: space-between;
+ 
+}
+ 
+.nav-link {
+    color: black;
+    text-decoration: none;
+}
+.nav-menu {
+    display: flex;
+    margin-right: 40px; /*espacio entre palabras*/
+    list-style:none; /*Quito puntitos*/
+}
+.nav-menu-item {
+    font-size: 18px;
+    margin: 0 10px;
+    line-height: 80px;
+    text-transform: uppercase;
+    width: max-content; /*palabra entera*/
+ 
+}
+.nav-menu-link {
+    padding: 8px 12px; /*ar/ab izq/der*/
+    border-radius: 5px;
+}
+.nav-menu-link:hover {
+    background-color: #ffcf00; /*estilo cuando paso el mouse*/
+    transition: 0.5s; /*Transicion suave entre link y link del menu*/
+}
+
+.form-editar{
+    background: #ffffff;
+    padding: 20px;
+    margin-bottom: 0 20px;
+    border-radius: 5px;
+    width: 50%;
+    height: 50%;
+}
+.btn-editar{
+    background: #ffffff;
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    
+
+}
+.btn-editar:hover{
+    background-color: #ffcf00; /*estilo cuando paso el mouse*/
+      
+}
