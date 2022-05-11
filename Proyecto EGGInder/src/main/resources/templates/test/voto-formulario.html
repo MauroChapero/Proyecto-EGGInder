@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASIGNAR VOTOS AL ALUMNO</title>
+</head>
+<body>
+    <div>
+        <h1>ASIGNAR VOTOS AL ALUMNO</h1>
+    </div>
+    <div>
+        <div th:if="${exito}!=null">
+            <h4>EXITO</h4>
+            <p th:text="${exito}"></p>
+        </div>
+        <div th:if="${error}!=null">
+            <h4>ERROR</h4>
+            <p th:text="${error}"></p>
+        </div>
+    </div>
+    <div>
+        <form th:action="@{/perfil/voto/}" method="POST">
+            <div>
+                <label>Materia que quiero aprender</label>
+                <input type="text" name="nombreMateria" placeholder="Nombre de la materia aprender">
+            </div>
+            <div>
+                <label>Materia que quiero enseñar</label>
+                <input type="text" name="nombreMateria2" placeholder="Nombre de la materia enseñar">
+            </div>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+</body>
+</html>

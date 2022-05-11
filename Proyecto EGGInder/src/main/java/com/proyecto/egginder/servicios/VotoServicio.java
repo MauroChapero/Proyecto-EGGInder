@@ -25,28 +25,26 @@ public class VotoServicio {
     private VotoRepositorio votoRepositorio;
     
     @Transactional
-    public Voto save(Boolean voto, Materia materia) throws Exception{
+    public Voto save(Materia materia) throws Exception{
         //  Validacion del contenido que ingresa el usuario
-        validator(voto, materia);
+        validator(materia);
         //  Creamos el Voto y le seteamos el Boolean voto / Materia materia
         Voto entidad = new Voto();
-        entidad.setVoto(voto);
         entidad.setMateria(materia);
         //  Guardamos en el repositorio
         return votoRepositorio.save(entidad);
         
     }
     @Transactional
-    public Voto edit(String id, Boolean voto, Materia materia) throws Exception{
+    public Voto edit(String id, Materia materia) throws Exception{
         //  Validamos los datos del Voto
-        validator(voto, materia);
+        validator(materia);
         //  Buscamos al voto por su ID y lo depositamos en un contenedor Optional<Voto>
         Optional<Voto> respuesta = votoRepositorio.findById(id);
         //  Si esta cargado el Contenedor Optional<Voto> entra al if
         if (respuesta.isPresent()) {
             //  Se lo envio a un objeto Voto con los datos traidos y le seteo los cambios.
             Voto u = respuesta.get();
-            u.setVoto(voto);
             u.setMateria(materia);
             //  retornas el repositorio.save con el voto cambiado dentro
             return votoRepositorio.save(u);
@@ -58,11 +56,10 @@ public class VotoServicio {
     }
     
     @Transactional
-    public Voto modificar(String id, Boolean voto, Materia materia) throws Exception{
-        validator(voto, materia);
+    public Voto modificar(String id, Materia materia) throws Exception{
+        validator(materia);
         Voto v = votoRepositorio.getById(id);
         if (v!=null) {
-            v.setVoto(voto);
             v.setMateria(materia);
             return votoRepositorio.save(v);
         } else {
@@ -85,11 +82,12 @@ public class VotoServicio {
         return votoRepositorio.getById(id);
     }
     
-    public void validator(Boolean voto, Materia materia) throws Exception{
-       
-        if(voto==null){
-            throw new Exception("Ingreso un voto invalido");
-        }
+    public Voto buscarPorIdMateria(String id){
+        return votoRepositorio.buscarVotoPorIdMateria(id);
+    }
+    
+    public void validator(Materia materia) throws Exception{
+        
         if(materia==null){
             throw new Exception("Ingreso un voto invalido");
         }

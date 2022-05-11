@@ -50,7 +50,7 @@ public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter{
                         .passwordParameter("clave")
                         // Ruta a la que vamos a acceder despues de loguearnos con exito
                         // + atributo de login
-                        .defaultSuccessUrl("/perfil/lista?login").permitAll()
+                        .defaultSuccessUrl("/?login").permitAll()
                 
                 //Configuraciones LOGOUT / DESCONECTARSE
                 .and().logout()

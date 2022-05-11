@@ -16,7 +16,10 @@ import org.springframework.stereotype.Repository;
  * @author laura
  */
 @Repository
-public interface VotoRepositorio extends JpaRepository<Voto, String>{ 
+public interface VotoRepositorio extends JpaRepository<Voto, String>{
+    
+    @Query("SELECT c FROM Voto c WHERE c.materia = :id")
+    public Voto buscarVotoPorIdMateria(@Param("id") String id);
     
     /*
     @Query("SELECT  c FROM Voto c Where = :id")   //  1. Query inservible, ya que existe el "findById" en JpaRepository

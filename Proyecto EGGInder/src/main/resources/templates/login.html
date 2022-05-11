@@ -1,44 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/cf27837293.js"></script>
-    <link rel="stylesheet" href="/PROYECTO EGG INDER/Proyecto EGGInder/src/main/resources/static/css/style-login.css">
-    <title>Egg inder</title>
-</head>
-<body>
+    <link rel="stylesheet" href="/css/style-login.css" />
+    <title>EGG Inder</title>
+  </head>
+  <body>
     <header>
-        <nav class="nav">
-            <a href="#"><img src="/PROYECTO EGG INDER/Proyecto EGGInder/src/main/resources/static/img/logo egginder.png" align-left width="150" height="120"></a>
-            <ul class="nav-menu">
-                <li class="nav-menu-item"><a href="#" class="nav-menu-link nav-link">misión</a></li>
-                <li class="nav-menu-item"><a href="#" class="nav-menu-link nav-link">mi perfil</a></li>
-                <li class="nav-menu-item"><a href="#" class="nav-menu-link nav-link">iniciar sesión</a></li>
-            </ul>
-        </nav>
+      <nav class="nav">
+        <a href="#"
+          ><img
+            src="/img/logo egginder.png"
+            align-left
+            width="150"
+            height="120"
+        /></a>
+        <ul class="nav-menu">
+          <li class="nav-menu-item">
+            <a th:href="@{/inicio}" class="nav-menu-link nav-link">inicio</a>
+          </li>
+          <li class="nav-menu-item">
+            <a th:href="@{/perfil}" class="nav-menu-link nav-link">mi perfil</a>
+          </li>
+          <li class="nav-menu-item">
+            <a th:href="@{/registro}" class="nav-menu-link nav-link"
+              >registrate</a
+            >
+          </li>
+        </ul>
+      </nav>
     </header>
-    <form class="form-login" action="#" method="post">
-      <h2 class="titulo-bienvenido">Bienvenido</h2>  
+    <form class="form-login" th:action="@{/logincheck}" method="post">
+      <h2 class="titulo-bienvenido">Bienvenido</h2>
       <div class="contenedor">
+        <div></div>
         <div class="contenedor-input">
-            <i class="fa-solid fa-envelope"></i>
-            <input class="input-login" type="email" placeholder="Email">
+          <i class="fa-solid fa-envelope"></i>
+          <input
+            class="input-login"
+            type="email"
+            name="email"
+            placeholder="Email"
+          />
         </div>
         <div class="contenedor-input">
-            <i class="fa-solid fa-unlock"></i>
-            <input class="input-login" type="password" placeholder="Contraseña">
+          <i class="fa-solid fa-unlock"></i>
+          <input
+            class="input-login"
+            type="password"
+            name="clave"
+            placeholder="Contraseña"
+          />
         </div>
-        <div class="contenedor-input">
-            <i class="fa-solid fa-unlock"></i>
-            <input class="input-login" type="password" placeholder="Confirme su contraseña">
-        </div>
-            <button class="btn-login btn-animado">
-                <a href="#"></a>
-                <b>Login</b>
-            </button>
+        <button class="btn-login btn-animado">
+            <b>Login</b>
+            <a href="#"></a>
+        </button>
       </div>
     </form>
-</body>
+  </body>
 </html>

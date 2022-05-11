@@ -4,9 +4,9 @@ import com.proyecto.egginder.entidades.Materia;
 import com.proyecto.egginder.repositorios.MateriaRepositorio;
 import java.util.List;
 import java.util.Optional;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class MateriaServicio {
@@ -45,6 +45,11 @@ public class MateriaServicio {
         } else {
             throw new Exception("No se halló la materia a eliminar.");
         }
+    }
+    
+    @Transactional(readOnly = true)
+    public Materia buscarPorNombre(String nombre){
+        return materiaRepository.buscarPorNombre(nombre);
     }
     
     public void validarMateria(String nombre) throws Exception {

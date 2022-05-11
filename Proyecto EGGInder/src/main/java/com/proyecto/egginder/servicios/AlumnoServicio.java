@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -29,7 +30,19 @@ public class AlumnoServicio implements UserDetailsService{
     
     @Transactional
     public Alumno crearPerfil(String nombre, String apellido, String email, String clave1, String clave2) throws Exception{
-        //Validar los datos del formulario para crear un alumno
+        
+        validar(nombre, apellido, email, clave1, clave2);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        
+        Alumno perfil = new Alumno();
+        perfil.setNombre(nombre);
+        perfil.setApellido(apellido);
+        perfil.setEmail(email);
+        perfil.setClave(encoder.encode(clave1));
+        perfil.setRol(Role.USUARIO);
+        return alumnoRepositorio.save(perfil);
+        
+        /*//Validar los datos del formulario para crear un alumno
         validar(nombre, apellido, email, clave1, clave2);
         //Encriptador de password
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -41,7 +54,7 @@ public class AlumnoServicio implements UserDetailsService{
         //Encripto la clave con el metodo encode()
         alumno.setClave(encoder.encode(clave1));
         alumno.setRol(Role.USUARIO);
-        return alumnoRepositorio.save(alumno);
+        return alumnoRepositorio.save(alumno);*/
     }
     
     @Transactional
@@ -98,10 +111,21 @@ public class AlumnoServicio implements UserDetailsService{
         return alumnoRepositorio.getById(id);
     }
     
+    @Transactional(readOnly = true)
     public Alumno findByEmail(String email){
         return alumnoRepositorio.findByEmail(email);
     }
-
+    
+    public Voto buscarVotoAprender(String id){
+        Alumno alumno = getOne(id);
+        return alumno.getVotoAprender();
+    }
+    
+    public Voto buscarVotoEnseniar(String id){
+        Alumno alumno = getOne(id);
+        return alumno.getVotoEnseniar();
+    }
+    
     public void validar(String nombre, String apellido, String email, String clave1, String clave2) throws Exception{
         if (nombre == null || nombre.trim().isEmpty()) {
             throw new Exception("Nombre no puede estar vacio.");
@@ -130,25 +154,21 @@ public class AlumnoServicio implements UserDetailsService{
     // Va a encargarse de crear una sesion, conceder permisos y validar datos
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        // Asignamos al usuario con el correo
         Alumno usuario = alumnoRepositorio.findByEmail(email);
-        // Si hay un usuario con ese correo, entramos en la condicional
-        if (usuario!=null) {
-            // Creamos una lista de permisos
+        if (usuario != null) {
             List<GrantedAuthority> permisos = new ArrayList<>();
-            
-            //Otorgamos los permisos a un usuario segun su ROLE
-            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_"+usuario.getRol());
-            //Los agregamos a la lista de permisos
+
+            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_" + usuario.getRol());//ROLE_ADMIN O ROLE_USER
             permisos.add(p1);
-            
-            //En esta parte nos permite guardar el OBJETO USUARIO LOG para despues usarse
+
+            //Esto me permite guardar el OBJETO USUARIO LOG, para luego ser utilizado
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
             HttpSession session = attr.getRequest().getSession(true);
             session.setAttribute("usuariosession", usuario);
-            
+
             User user = new User(usuario.getEmail(), usuario.getClave(), permisos);
             return user;
+
         } else {
             return null;
         }

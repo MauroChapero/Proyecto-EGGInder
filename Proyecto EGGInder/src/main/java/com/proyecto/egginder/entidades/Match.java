@@ -1,4 +1,5 @@
 package com.proyecto.egginder.entidades;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -6,29 +7,26 @@ import javax.persistence.OneToOne;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Voto {
+public class Match {
 
-    //IDENTIFICADOR UNICO
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     
-    //MATERIA QUE EL ALUMNO QUIERE APRENDER
     @OneToOne
-    private Materia materia;
+    private Alumno alumno1;
+    
+    @OneToOne
+    private Alumno alumno2;
 
-    //CONSTRUCTOR VACIO
-    public Voto() {
+    public Match() {
     }
 
-    //CONSTRUCTOR PARAMETRIZADO
-
-    public Voto(Materia materia) {
-        this.materia = materia;
+    public Match(Alumno alumno1, Alumno alumno2) {
+        this.alumno1 = alumno1;
+        this.alumno2 = alumno2;
     }
-
-    //GETTERS Y SETTERS
 
     public String getId() {
         return id;
@@ -38,12 +36,22 @@ public class Voto {
         this.id = id;
     }
 
-    public Materia getMateria() {
-        return materia;
+    public Alumno getAlumno1() {
+        return alumno1;
     }
 
-    public void setMateria(Materia materia) {
-        this.materia = materia;
+    public void setAlumno1(Alumno alumno1) {
+        this.alumno1 = alumno1;
     }
+
+    public Alumno getAlumno2() {
+        return alumno2;
+    }
+
+    public void setAlumno2(Alumno alumno2) {
+        this.alumno2 = alumno2;
+    }
+    
+    
     
 }
