@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USUARIO')")
 @RequestMapping("/materia")
 public class MateriaControlador {
 
@@ -21,12 +22,14 @@ public class MateriaControlador {
     MateriaServicio materiaService;
 
     //Vista del formulario para ver materia. th:href="@{/materia/formulario}"
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/registrar")
     public String formularioMateria() {
         return "añadirMateria.html";
     }
 
     //Formulario de registro para materia. th:action="@{/materia/registrar}" method="POST"
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/registrar")
     public String añadirMateria(ModelMap model, @RequestParam String nombre) throws Exception {
         try {
@@ -42,6 +45,7 @@ public class MateriaControlador {
     // Lista. th:href="@{/materia/lista}"
     // @PreAuthorize("hasRole('ROLE_ADMIN','ROLE_USER')")
     // Sino usar el HttpSession con un if en cada metodo verificando si es admin
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USUARIO')")
     @GetMapping("/lista")
     public String listarMaterias(ModelMap model) throws Exception {
         try {
@@ -53,6 +57,7 @@ public class MateriaControlador {
         }
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/editar/{id}")
     public String editarMaterias(@PathVariable String id, ModelMap model) throws Exception {
         model.put("materia", materiaService.getById(id));
@@ -67,6 +72,7 @@ public class MateriaControlador {
             <input th:value="${materia.nombre}" type="text" class="form-control" name="nombre" placeholder="Nombre de la materia">
     </div> 
      */
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/editar/{id}")
     public String modificar(ModelMap model, @PathVariable String id, @RequestParam String nombre) throws Exception {
         try {
@@ -80,6 +86,7 @@ public class MateriaControlador {
     }
 
     //<a class="btn btn-danger" type="button" th:href="@{'/materia/eliminar/' + ${materia.id}}"> Eliminar</a>
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping("/eliminar/{id}")
     public String eliminarMateria(ModelMap model, @PathVariable(name = "id") String id) {
         try {

@@ -72,8 +72,8 @@ public class VotoServicio {
     }
     
     @Transactional
-    public void delete(String id){
-        votoRepositorio.deleteById(id);
+    public void delete(Voto voto){
+        votoRepositorio.delete(voto);
     }
     
     @Transactional(readOnly = true)

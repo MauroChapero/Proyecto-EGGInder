@@ -33,15 +33,23 @@ public class AlumnoControlador {
     @Autowired
     private MateriaServicio materiaServicio;
 
+    @GetMapping("/ver")
+    public String pefil(){
+        return "/test/perfil";
+    }
+    
     @GetMapping("/voto")
     public String crearVoto(ModelMap model, HttpSession session) {
 
         Alumno perfil = (Alumno) session.getAttribute("usuariosession");
+        Alumno usuario = alumnoServicio.getOne(perfil.getId()); //  PASE A UN USUARIO CON EL ID DE LA SESSION
         List<Materia> listMaterias = materiaServicio.listarMaterias();
+        // la mejor manera de modelar los cambios actualizados, es modelar un usuario en vez de una sesion
         model.addAttribute("materias", listMaterias);
         model.addAttribute("perfil", perfil);
-        model.addAttribute("voto1", perfil.getVotoAprender());
-        model.addAttribute("voto2", perfil.getVotoEnseniar());
+        model.put("voto1", usuario.getVotoAprender());  // USE EL ID DEL USUARIO
+        // Se trabaja con el objeto usuario, en vez de la session, porque nunca se actualizan los valores
+        model.put("voto2", usuario.getVotoEnseniar());  // USE EL ID DEL USUARIO
         return "/test/voto-formulario";
     }
 
@@ -54,19 +62,38 @@ public class AlumnoControlador {
             if (perfil == null) {
                 throw new Exception("httpSession = null, sesion no iniciada");
             }
+            //  VERIFICA SI EL VOTO YA ESTA CARGADO Y ELIMINA LOS ANTERIORES
+            
+            
+            
             Materia materia1 = materiaServicio.getOne(idMateria1);
             Materia materia2 = materiaServicio.getOne(idMateria2);
-            Voto votoAprender = votoServicio.save(materia1);
-            Voto votoEnseniar = votoServicio.save(materia2);
             
-            alumnoServicio.asignarCambiarVotos(perfil.getId(),votoAprender, votoEnseniar);
+            if (perfil.getVotoAprender()!=null) {
+                votoServicio.edit(perfil.getVotoAprender().getId(), materia1);
+            } else {
+                Voto votoAprender = votoServicio.save(materia1);
+                alumnoServicio.crearVotoAprender(perfil.getId(), votoAprender);
+            }
+            if (perfil.getVotoEnseniar()!=null) {
+                votoServicio.edit(perfil.getVotoEnseniar().getId(), materia2);
+            } else {
+                Voto votoEnseniar = votoServicio.save(materia2);
+                alumnoServicio.crearVotoEnseniar(perfil.getId(), votoEnseniar);
+            }
+            
+           //session.setAttribute("usuariosession", perfil);
+            
+            if (perfil == null) {
+                throw new Exception("httpSession = null, sesion no iniciada");
+            }
             return "redirect:/inicio";
         } catch (Exception e) {
             Alumno perfil = (Alumno) session.getAttribute("usuariosession");
             
             List<Materia> listMaterias = materiaServicio.listarMaterias();
             model.addAttribute("materias", listMaterias);
-            model.put("error", "Salto un error"); 
+            model.put("error", e.getMessage()); 
             model.addAttribute("perfil", perfil);
             return "/test/voto-formulario";
         }

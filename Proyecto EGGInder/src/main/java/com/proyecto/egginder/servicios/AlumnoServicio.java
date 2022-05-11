@@ -81,11 +81,22 @@ public class AlumnoServicio implements UserDetailsService{
     }
     
     @Transactional
-    public Alumno asignarCambiarVotos(String id, Voto votoAprender, Voto votoEnseniar) throws Exception{
+    public Alumno crearVotoAprender(String id, Voto votoAprender) throws Exception{
         Optional<Alumno> respuesta = alumnoRepositorio.findById(id);
         if (respuesta.isPresent()) {
             Alumno alumno = respuesta.get();
             alumno.setVotoAprender(votoAprender);
+            return alumnoRepositorio.save(alumno);
+        } else {
+            throw new Exception("No existe un alumno con ese ID.");
+        }
+    }
+    
+    @Transactional
+    public Alumno crearVotoEnseniar(String id, Voto votoEnseniar) throws Exception{
+        Optional<Alumno> respuesta = alumnoRepositorio.findById(id);
+        if (respuesta.isPresent()) {
+            Alumno alumno = respuesta.get();
             alumno.setVotoEnseniar(votoEnseniar);
             return alumnoRepositorio.save(alumno);
         } else {
