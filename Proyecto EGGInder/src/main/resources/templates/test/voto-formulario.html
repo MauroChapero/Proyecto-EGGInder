@@ -21,17 +21,51 @@
         </div>
     </div>
     <div>
-        <form th:action="@{/perfil/voto/}" method="POST">
+        <form th:action="@{/perfil/voto}" method="POST">
             <div>
-                <label>Materia que quiero aprender</label>
-                <input type="text" name="nombreMateria" placeholder="Nombre de la materia aprender">
+                <label>¿Qué materia queres aprender?</label>
+                <select name="idMateria1">
+                    <div th:if="${voto1}!=null">
+                        <option th:value="${voto1.materia.id}" th:text="${voto1.materia.nombre}"></option>
+                    </div>
+                    <option value="default">Default</option>
+                    <div th:each="materia : ${materias}">
+                        <div th:if="${voto1.materia.id}!=${materia.id}">
+                            <option th:value="${materia.id}" th:text="${materia.nombre}"></option>
+                        </div>
+                        <div th:unless="${}">
+                            <option th:value="${materia.id}" th:text="${materia.nombre}"></option>
+                        </div>
+                    </div>
+                </select>
+                <div>
+                    <label>¿Qué materia queres enseñar?</label>
+                    <select name="idMateria2">
+                        <div th:if="${voto2}!=null">
+                            <option th:value="${voto2.materia.id}" th:text="${voto2.materia.nombre}"></option>
+                        </div>
+                        <!-- <option th:unless="${voto2}==null" value="default">Default</option> -->
+                        <div th:each="materia : ${materias}">
+                            <div th:if="${voto2.materia.id}!=${materia.id}">
+                                <option th:value="${materia.id}" th:text="${materia.nombre}"></option>
+                            </div>
+                        </div>
+                    </select>
+                </div>
             </div>
-            <div>
-                <label>Materia que quiero enseñar</label>
-                <input type="text" name="nombreMateria2" placeholder="Nombre de la materia enseñar">
-            </div>
-            <button type="submit">Enviar</button>
+            <button type="submit">Enviar voto</button>
         </form>
     </div>
+    <!--
+        <div>
+                <label>Editorial:</label>
+                <select name="editorial">
+                  <option value="Default">Default</option>
+                  <div th:each="editorial : ${editoriales}"> 
+                    <option th:value="${editorial.nombre}" th:text="${editorial.nombre}"></option>
+                  </div>
+                </select>
+            </div>
+    -->
 </body>
 </html>

@@ -59,6 +59,15 @@
             <b>Login</b>
             <a href="#"></a>
         </button>
+        <div>
+          <div th:if="${error}!=null">
+            <h4>ERROR</h4>
+            <p th:text="${error}"></p>
+          </div>
+          <div th:if="${logout}!=null">
+            <p th:text="${logout}"></p>
+          </div>
+        </div>
       </div>
     </form>
   </body>
