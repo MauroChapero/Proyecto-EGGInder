@@ -7,6 +7,7 @@ package com.proyecto.egginder.Servicios;
 
 import com.proyecto.egginder.entidades.Materia;
 import com.proyecto.egginder.entidades.Voto;
+import com.proyecto.egginder.repositorios.MateriaRepositorio;
 import com.proyecto.egginder.repositorios.VotoRepositorio;
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +24,9 @@ public class VotoServicio {
     
     @Autowired
     private VotoRepositorio votoRepositorio;
+    
+    @Autowired
+    private MateriaRepositorio materiaRepositorio;
     
     @Transactional
     public Voto save(Materia materia) throws Exception{
@@ -82,8 +86,8 @@ public class VotoServicio {
         return votoRepositorio.getById(id);
     }
     
-    public Voto buscarPorIdMateria(String id){
-        return votoRepositorio.buscarVotoPorIdMateria(id);
+    public Materia buscarPorIdMateria(String id){
+        return materiaRepositorio.getById(id);
     }
     
     public void validator(Materia materia) throws Exception{

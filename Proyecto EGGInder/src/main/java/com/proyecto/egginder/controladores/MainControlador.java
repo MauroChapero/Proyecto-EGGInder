@@ -2,6 +2,7 @@ package com.proyecto.egginder.controladores;
 
 import com.proyecto.egginder.servicios.AlumnoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,13 @@ public class MainControlador {
             return "/login";
         }
     }
-
+    
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USUARIO')")
+    @GetMapping("/inicio")
+    public String inicio(){
+        return "/test/inicio";
+    }
+    
     @GetMapping("/login")
     public String login(@RequestParam(required = false) String error, @RequestParam(required = false) String logout, ModelMap model) {
         if (error != null) {

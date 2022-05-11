@@ -20,32 +20,32 @@ import org.springframework.web.bind.annotation.RequestParam;
  *
  * @author laura
  */
-@Controller
-@RequestMapping("/voto")
-public class VotoControlador {
-    @Autowired
-    private VotoServicio votoService;
-    
-    @Autowired
-    private MateriaServicio materiaServicio;
-    
-    @GetMapping("/formulario")
-    public String index(){
-        return "/test/guardarVoto.html";
-    }
-    
-     @PostMapping("/formulario")
-    public String saveVoto(ModelMap model, @RequestParam String nombreMateria) throws Exception {
-        try {
-            Materia materia = materiaServicio.buscarPorNombre(nombreMateria);
-            votoService.save(materia);
-            model.put("exito", "Voto añadido.");
-            return "/test/guardarVoto.html";
-        } catch (Exception e) {
-            model.put("error", "No se pudo Guardar el voto.");
-            return "/test/guardarVoto.html";
-        }
-    }
+//@Controller
+//@RequestMapping("/voto")
+//public class VotoControlador {
+//    @Autowired
+//    private VotoServicio votoService;
+//    
+//    @Autowired
+//    private MateriaServicio materiaServicio;
+//   
+//    @GetMapping("/formulario")
+//    public String index(){
+//        return "/test/guardarVoto.html";
+//    }
+//    
+//    @PostMapping("/formulario")
+//    public String saveVoto(ModelMap model, @RequestParam String nombreMateria) throws Exception {
+//        try {
+//            Materia materia = materiaServicio.buscarPorNombre(nombreMateria);
+//            votoService.save(materia);
+//            model.put("exito", "Voto añadido.");
+//            return "/test/guardarVoto.html";
+//        } catch (Exception e) {
+//            model.put("error", "No se pudo Guardar el voto.");
+//            return "/test/guardarVoto.html";
+//        }
+//    }
     /*@GetMapping("/lista")
     public String listarVotos (ModelMap model) throws Exception {
         try {
@@ -104,5 +104,5 @@ public class VotoControlador {
         }
     }
 
-*/
 }
+*/

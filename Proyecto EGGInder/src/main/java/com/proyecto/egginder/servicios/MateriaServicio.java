@@ -63,6 +63,11 @@ public class MateriaServicio {
         return materiaRepository.findAll();
     }
     
+    @Transactional(readOnly = true)
+    public Materia getOne(String id){
+        return materiaRepository.getById(id);
+    }
+    
     @Transactional
     public Materia getById(String id) throws Exception{
         if (materiaRepository.getById(id) == null){
