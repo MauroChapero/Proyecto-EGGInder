@@ -1,0 +1,162 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 90px 20px 0;
+    background-color: #ffcf00;
+   /* background-image: url(/test/resources/static/img/FONDO-PERFIL.png);*/
+    background-image: url(../img/FONDO-PERFIL.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.header {
+    background-color: #ffffff;
+    height: 90px;
+    position: fixed; /*posicion fija*/
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.nav {
+    display: flex; /*coloca celdas como cajas*/
+    justify-content: space-between;
+
+}
+
+.nav-link {
+    color: black;
+    text-decoration: none;
+}
+.nav-menu {
+    display: flex;
+    margin-right: 40px; /*espacio entre palabras*/
+    list-style:none; /*Quito puntitos*/
+}
+.nav-menu-item {
+    font-size: 18px;
+    margin: 0 10px;
+    line-height: 80px; 
+    text-transform: uppercase; 
+    width: max-content; /*palabra entera*/
+
+}
+.nav-menu-link {
+    padding: 8px 12px; /*ar/ab izq/der*/
+    border-radius: 5px;
+}
+.nav-menu-link:hover {
+    background-color: #ffcf00; /*estilo cuando paso el mouse*/
+    transition: 0.5s; /*Transicion suave entre link y link del menu*/
+}
+main {
+    background:-o-linear-gradient(to right, #ffcf00, #ffffff);
+    color: rgb(34, 34, 34);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.card {
+    width: 320px;
+    height: 340px;
+    background: #fff;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
+
+}
+.card::before{
+    content: "";
+    position: absolute;
+    top: 2%;
+    width: 95%;
+    height: 120px;
+    z-index: 1;
+    border-radius: 10px 10 px 0 0 ;
+    background: #ffcf00;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.13);
+    transform-origin: bottom;
+    transition: transform .4s;
+}
+.card:hover::before{
+    transform: translateY(-5px) scaleY(1.2);
+}
+.card .img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    z-index:  10;
+    transform: translateY(50px);
+    border: 10px solid #000;
+    overflow: hidden;
+    position: absolute;
+    background: #ffcf00;
+}
+.card .img img{
+    width: 120%;
+    height: 120%;
+    transform: translate(-8%,-8%);
+
+}
+
+.redes{
+
+    width: 50px;
+    height: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+
+
+}
+
+.contenido{
+
+        margin-top: 100px;
+        width: 300px;
+        background-color: rgba(255,255,255,0.6);
+        padding: 20px;
+        margin-top: 100px;
+        border-radius: 10px;
+        margin-top: 10px;
+        margin-left: 50px;
+    
+} 
+
+#icono{
+
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    
+}
+
+button{
+
+    background-color: #ffcf00;   
+    border: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    border-color: #d8d8d8;
+    border-style: solid;
+    border-radius:35px;
+
+    padding-top:15px;
+    padding-bottom:15px;
+    padding-left:40px;
+    padding-right:40px;
+
+    margin-top: 10px;
+    margin-left: 35px;
+    margin-bottom: 20px;  
+    
+}
+.img{
+    margin-top: 30px;
+    margin-left: 70px;
+}
