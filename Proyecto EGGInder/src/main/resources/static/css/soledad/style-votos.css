@@ -7,7 +7,13 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     padding: 90px 20px 0;
     background-color: #ffcf00;
+    background-image: url(/src/main/resources/static/img/FONDO-PERFIL.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+   
 }
+
 .header {
     background-color: #ffffff;
     height: 90px;
@@ -50,21 +56,45 @@ body{
 
 .form-editar{
     background: #ffffff;
+    opacity: 90%;
     padding: 20px;
-    margin-bottom: 0 20px;
+    border-width: 2px;
+    border-style:double;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
     border-radius: 5px;
     width: 50%;
     height: 50%;
 }
+.edit ,
+.confirme{
+    color: black;
+    text-transform: uppercase;
+}
 .btn-editar{
-    background: #ffffff;
+    background-color: #000;
+    color: #ffffff;
     width: 100px;
     height: 30px;
     border-radius: 5px;
-    
+   
 
 }
 .btn-editar:hover{
     background-color: #ffcf00; /*estilo cuando paso el mouse*/
       
+}
+.abajo{
+    height: 4rem;
+    font-style: italic;
+    float: left;
+    position:relative; 
+    margin:0 auto; 
+    width:auto;
+    position:fixed; 
+    bottom:0; 
+    z-index:999999;
+
+
 }
