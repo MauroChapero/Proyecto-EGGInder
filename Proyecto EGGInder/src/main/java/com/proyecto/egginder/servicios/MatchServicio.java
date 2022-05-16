@@ -5,6 +5,7 @@ import com.proyecto.egginder.entidades.Match;
 import com.proyecto.egginder.repositorios.AlumnoRepositorio;
 import com.proyecto.egginder.repositorios.MatchRepositorio;
 import com.proyecto.egginder.repositorios.MateriaRepositorio;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -75,5 +76,10 @@ public class MatchServicio {
         if (alumno1.getVotoAprender()==null || alumno2.getVotoEnseniar()==null) {
             throw new Exception("No hay voto");
         }
+    }
+    //********
+    @Transactional
+    public List<Match> findAll(){
+        return matchRepositorio.findAll();
     }
 }
