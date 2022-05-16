@@ -5,7 +5,6 @@ import com.proyecto.egginder.entidades.Materia;
 import com.proyecto.egginder.entidades.Voto;
 import com.proyecto.egginder.enumeraciones.Role;
 import com.proyecto.egginder.repositorios.AlumnoRepositorio;
-import com.proyecto.egginder.repositorios.MateriaRepositorio;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -31,14 +30,20 @@ public class AlumnoServicio implements UserDetailsService {
     private AlumnoRepositorio alumnoRepositorio;
     
     @Autowired
+    private com.proyecto.egginder.Servicios.VotoServicio votoServicio;
+    
+    @Autowired
     private MateriaServicio materiaServicio;
-
+    
     @Transactional
-    public Alumno crearPerfil(String nombre, String apellido, String email, String clave1, String clave2) throws Exception {
+    public Alumno crearPerfil(String nombre, String apellido, String email, String clave1, String clave2, Materia materia) throws Exception {
 
         validar(nombre, apellido, email, clave1, clave2);
         if (alumnoRepositorio.findByEmail(email) != null) {
             throw new Exception("Ya existe un usuario con ese correo");
+        }
+        if (materia==null) {
+            throw new Exception("Ingrese una materia");
         }
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -48,6 +53,7 @@ public class AlumnoServicio implements UserDetailsService {
         perfil.setEmail(email);
         perfil.setClave(encoder.encode(clave1));
         perfil.setRol(Role.USUARIO);
+        votoServicio.save(materia);
         return alumnoRepositorio.save(perfil);
     }
 

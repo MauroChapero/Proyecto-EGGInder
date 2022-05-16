@@ -51,20 +51,22 @@
             <div class="box">
               <div th:if="${voto}!=null">
                 <h2 class="subtituloMateria">Materia seleccionada: <span id="materiaNombre" th:text="${voto.materia.nombre}"></span></h2>
+                <div th:if="${usuario2}!=null">
+                  <div>
+                    <h2 class="subtituloMateria">Tu match es: <span class="user2nombre" th:text="${usuario2.nombre}"></span>  <span class="user2nombre" th:text="${usuario2.apellido}"></span>
+                      <br>
+                      Contacto: <span class="user2nombre" th:text="${usuario2.email}"></span></h2>
+                  </div>
+                </div>
+                <div th:unless="${usuario2}!=null">
+                  <h2 class="subtituloMateria">No se ha encontrado un match aun :(</h2>
+                </div>
               </div>
               <div th:unless="${voto}!=null">
                 <h2 class="subtituloMateria">No se ha seleccionado una materia</h2>
               </div>
               <br>
-              <div th:if="${usuario2.id}==${usuario.id}">
-                <h2 class="subtituloMateria">No se ha encontrado un match aun :(</h2>
               </div>
-              <div th:unless="${usuario2.id}==${usuario.id}">
-                <h2 class="subtituloMateria">Tu match es: <span class="user2nombre" th:text="${usuario2.nombre}"></span>  <span class="user2nombre" th:text="${usuario2.apellido}"></span>
-                <br>
-              Contacto: <span class="user2nombre" th:text="${usuario2.email}"></span></h2>
-              </div>
-            </div>
           </div>
           <button id="botonfinal">
             <a th:href="@{/perfil/modificar-perfil}">
