@@ -138,27 +138,37 @@ public class AlumnoServicio implements UserDetailsService{
     }
     
     public void validar(String nombre, String apellido, String email, String clave1, String clave2) throws Exception{
+        // si el nombre viene vacio || si el nombre viene unicamente con espacios
         if (nombre == null || nombre.trim().isEmpty()) {
             throw new Exception("Nombre no puede estar vacio.");
         }
+        
         if (apellido == null || apellido.trim().isEmpty()) {
             throw new Exception("Apellido no puede estar vacio.");
         }
+        
         if (email == null || email.trim().isEmpty()) {
             throw new Exception("Email no puede estar vacio.");
+        }
+        if (!email.contains("@") || !email.contains(".")) {
+            throw new Exception("Error de sintaxis: Email debe contener un '@', '.'");
         }
         if (alumnoRepositorio.findByEmail(email)!=null) {
             throw new Exception("Ya existe un usuario con ese correo");
         }
+        
         if (clave1 == null || clave2 == null || clave2.trim().isEmpty() || clave1.trim().isEmpty()) {
             throw new Exception("La constraseña no puede estar vacia.");
         }
+        
         if (!clave1.equals(clave2)) {
             throw new Exception("Las contraseñas deben coincidir.");
         }
+        
         if (clave1.length() < 8 || clave1.length() > 16) {
             throw new Exception("La contraseña debe contener entre 8 y 16 caracteres");
         }
+       
     }
 
     // Metodo abstracto de la interfaz

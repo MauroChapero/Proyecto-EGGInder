@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface MateriaRepositorio extends JpaRepository<Materia,String> {
     
     @Query("SELECT c FROM Materia c WHERE c.nombre = :nombre") 
-    public Materia buscarPorNombre(@Param("nombre") String nombre); 
+    public Materia buscarPorNombre(@Param("nombre") String nombre);
     
 }
