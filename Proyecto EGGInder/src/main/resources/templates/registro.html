@@ -38,14 +38,14 @@
                         <i class="fa-solid fa-user"></i>
                         <input class="controls" type="text" name="apellido" id="apellidos" placeholder="Ingrese su Apellido">
                     </div>
-                    <!-- <div class="contenedor-input">
+                    <div class="contenedor-input">
                      <i class="fa-solid fa-user"></i>
                      <select name="idMateria">
-                         <div th:each="materia : ${materias}">
-                            <option th:value="materia" th:text="${materia.nombre}"></option>
-                         </div>
-                     </select>
-                    </div> -->
+                       <div th:each="materia : ${materias}">
+                         <option th:value="${materia.id}" th:text="${materia.nombre}"></option> 
+                       </div>
+                      </select>
+                    </div>
                     <div class="contenedor-input">
                         <i class="fa-solid fa-envelope"></i>
                         <input class="controls"  type="email" name="email" id="correo" placeholder="Ingrese su Correo">

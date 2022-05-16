@@ -56,29 +56,29 @@ public class AlumnoControlador {
         Alumno perfil = (Alumno) session.getAttribute("usuariosession");
         Alumno usuario = alumnoServicio.getOne(perfil.getId());
         
-        if (usuario.getVoto()!=null) {
-            
-            List<Alumno> usuarios = alumnoServicio.alumnosMateriaCoinciden(usuario.getVoto().getMateria().getId());
-
-            Alumno usuario2;
-            for (Alumno aux : usuarios) {
-                if (!aux.getId().equals(usuario.getId())) {
-                    usuario2 = aux;
-                    model.addAttribute("usuario2", usuario2);
-                    break;
-                }
-            }
-
-    //        Alumno usuario2 = usuarios.get(0);
-    //        if (usuario2.getId().equals(usuario.getId())) {
-    //            usuario2 = usuarios.get(1);
-    //        }
+        List<Alumno> usuarios = alumnoServicio.alumnosMateriaCoinciden(usuario.getVoto().getMateria().getId());
         
+        Alumno usuario2;
+        for (Alumno aux : usuarios) {
+            if (!aux.getId().equals(usuario.getId())) {
+                usuario2 = aux;
+                model.addAttribute("usuario2", usuario2);
+                break;
+            }
         }
+        
+//        Alumno usuario2 = usuarios.get(0);
+//        
+//        if (!usuario2.getId().equals(usuario.getId())) {
+//            usuario2 = usuarios.get(0);
+//        } else {
+//            usuario2 = usuarios.get(1);
+//        }
+        
         model.addAttribute("perfil", perfil);
         model.addAttribute("usuario", usuario);
-        //model.addAttribute("usuario2", usuario2);
         model.addAttribute("voto", usuario.getVoto());
+        //  model.addAttribute("materia", usuario.getVoto().getMateria().getNombre());
         return "perfil";
     }
 
