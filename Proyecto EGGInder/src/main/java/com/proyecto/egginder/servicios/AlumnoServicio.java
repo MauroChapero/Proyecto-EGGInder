@@ -137,12 +137,13 @@ public class AlumnoServicio implements UserDetailsService {
     public Alumno findByEmail(String email) {
         return alumnoRepositorio.findByEmail(email);
     }
-
+    
+    @Transactional(readOnly = true)
     public Voto buscarVoto(String id) {
         Alumno alumno = getOne(id);
         return alumno.getVoto();
     }
-    
+    @Transactional(readOnly = true)
     public List<Alumno> alumnosMateriaCoinciden(String id){
         return alumnoRepositorio.listaUsuariosMateriasCoinciden(materiaServicio.getOne(id));
     }
