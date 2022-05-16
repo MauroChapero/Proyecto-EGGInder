@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <title>select voto personalizado</title>
+    <link rel="stylesheet" href="/css/style-votos.css" />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <a href="#"
+          ><img src="/img/logo egginder.png" align-left width="150" height="120"
+        /></a>
+        <ul class="nav-menu">
+          <li class="nav-menu-item">
+            <a th:href="@{/inicio}" class="nav-menu-link nav-link">inicio</a>
+          </li>
+          <li class="nav-menu-item">
+            <a th:href="@{/perfil/ver/}" class="nav-menu-link nav-link">mi perfil</a>
+          </li>
+          <li class="nav-menu-item" sec:authorize="!isAuthenticated()">
+            <a  th:href="@{/login}" class="nav-link">Iniciar Sesion</a>
+          </li>
+          <li class="nav-menu-item" sec:authorize="isAuthenticated()">
+            <a th:href="@{/logout}" class="nav-link">Desconectarse</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <br>
+            <section class="form-editar">
+                <div class="edit">  
+                    <h2>Editar Contraseña<h2>
+                </div>
+                <br>
+                <form th:action="@{/perfil/modificar-clave}" method="POST" class="editardatos">
+                    <div class="contenedor-datos">
+                <div class="contenedor-input">
+                    <i class="fa-solid fa-unlock"></i>
+                    <input class="controls" type="password" name="claveFormulario" id="contraseña" placeholder="Ingrese su nueva clave">
+                </div>
+                <div class="contenedor-input">
+                    <i class="fa-solid fa-unlock"></i>
+                    <input class="controls" type="password" name="claveFormularioVerificada" id="contraseña" placeholder="Repita su clave">
+                </div>
+                <br>
+                <div class="confirme">
+                    <h3>Para confirmar los cambios ingrese su contraseña</h3>
+                </div>
+                <br>
+                <div class="contenedor-input">
+                    <i class="fa-solid fa-unlock"></i>
+                    <input class="controls" type="password" name="claveEncriptada" id="contraseña" placeholder="Contraseña anterior">
+                </div>
+                <br>
+                <br>
+                <div>
+                    <button class="btn-editar"><b>¡LISTO!</b></button>
+                </div>
+            </div>
+        </form>
+        <article th:if="${exito}!=null">
+            <h5 class="validacionExito">EXITO</h5>
+            <p th:text="${exito}"></p>
+        </article>
+        <article th:if="${error}!=null">
+            <h4 class="validacionError">¡Ha ocurrido un error!</h4>
+            <p th:text="${error}"></p>
+        </article>
+    </main>
+    <footer>
+  
+    </footer>
+    <script src="https://kit.fontawesome.com/cf27837293.js"></script>
+  </body>
+</html>

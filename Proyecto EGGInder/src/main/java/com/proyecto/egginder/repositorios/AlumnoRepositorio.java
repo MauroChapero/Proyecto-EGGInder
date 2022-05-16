@@ -14,9 +14,6 @@ public interface AlumnoRepositorio extends JpaRepository<Alumno, String>{
     @Query("SELECT a FROM Alumno a WHERE a.email = :email")
     public Alumno findByEmail(@Param("email") String email);
     
-    @Query("SELECT a FROM Alumno a WHERE a.votoAprender.materia = :materia")
-    public List<Alumno> buscarPorVotosAprender(@Param("materia") Materia materia);
-    
-    @Query("SELECT a FROM Alumno a WHERE a.votoEnseniar.materia = :materia")
-    public List<Alumno> buscarPorVotosEnseniar(@Param("materia") Materia materia);
+    @Query("SELECT a FROM Alumno a WHERE a.voto.materia = :materia")
+    public List<Alumno> listaUsuariosMateriasCoinciden(@Param("materia") Materia materia);
 }

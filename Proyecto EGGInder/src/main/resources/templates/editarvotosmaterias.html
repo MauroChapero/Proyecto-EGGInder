@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <title>select voto personalizado</title>
+    <link rel="stylesheet" href="/css/soledad/style-votos.css" />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="nav">
+        <a href="#"
+          ><img src="/img/logo egginder.png" align-left width="150" height="120"
+        /></a>
+        <ul class="nav-menu">
+          <li class="nav-menu-item">
+            <a href="#" class="nav-menu-link nav-link">inicio</a>
+          </li>
+          <li class="nav-menu-item">
+            <a href="#" class="nav-menu-link nav-link">mi perfil</a>
+          </li>
+          <li class="nav-menu-item">
+            <a href="#" class="nav-menu-link nav-link">Cerrar sesión</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <form th:action="@{/perfil/voto}" method="POST">
+        <div>
+            <label>Selecciona tu materia</label>
+            <select name="idMateria">
+                <div th:if="${voto}!=null">
+                    <option th:value="${voto.materia.id}" th:text="${voto.materia.nombre}"></option>
+                </div>
+                <option value="default">Default</option>
+                <div th:each="materia : ${materias}">
+                    <option th:value="${materia.id}" th:text="${materia.nombre}"></option>
+                </div>
+            </select>
+        </div>
+        <button type="submit">Enviar voto</button>
+    </form>
+
+
+
+
+
+        <!-- <form class="formulario materia">
+          <h1 class="tt">Editar materias</h1>
+          <br>
+          <br>
+
+          <h2 class="subtt">Quiero enseñar:</h2>
+          <select name="opciones">
+            <option value="Matematica">Matemática</option>
+            <option value="Geografia" selected>Geografia</option>
+            <option value="Historia">Historia</option>
+            <option value="Logica">Lógica</option>
+          </select>
+          <br>
+          <h2 class="subtt">Quiero aprender:</h2>
+          <select name="opciones">
+            <option value="Matematica">Matemática</option>
+            <option value="Geografia" selected>Geografia</option>
+            <option value="Historia">Historia</option>
+            <option value="Logica">Lógica</option>
+          </select>
+          <br>
+          <br>
+          <div class="botoncito">
+            <input type="button" value="¡LISTO!" onclick="botonclick">
+          </div>
+        </form>  -->
+
+    </main>
+    <footer>
+  
+    </footer>
+  </body>
+</html>

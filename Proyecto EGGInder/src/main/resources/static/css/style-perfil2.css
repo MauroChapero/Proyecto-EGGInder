@@ -23,9 +23,12 @@ body{
     left: 0;
 }
 .nav {
+    background-color: #fff;
+    margin: auto;
+    width: 100%;
+    /* max-width: 1500; */
     display: flex; /*coloca celdas como cajas*/
-    justify-content: space-between;
-
+    justify-content: space-around;
 }
 
 .nav-link {
@@ -36,6 +39,7 @@ body{
     display: flex;
     margin-right: 40px; /*espacio entre palabras*/
     list-style:none; /*Quito puntitos*/
+    align-items: center
 }
 .nav-menu-item {
     font-size: 18px;
@@ -54,6 +58,7 @@ body{
     transition: 0.5s; /*Transicion suave entre link y link del menu*/
 }
 main {
+    /* margin: 5%; */
     background:-o-linear-gradient(to right, #ffcf00, #ffffff);
     color: rgb(34, 34, 34);
     height: 100vh;
@@ -120,14 +125,14 @@ main {
 .contenido{
 
         margin-top: 100px;
-        width: 300px;
+        width: 600px;
         background-color: rgba(255,255,255,0.6);
         padding: 20px;
         margin-top: 100px;
         border-radius: 10px;
         margin-top: 10px;
         margin-left: 50px;
-    
+
 } 
 
 .contenido a {
@@ -166,6 +171,8 @@ button{
 .img{
     margin-top: 30px;
     margin-left: 70px;
+    display: flex;
+    justify-content: center;
 }
 
 #botonVoto{
@@ -174,6 +181,53 @@ button{
 }
 
 .footer {
-    background-color: aqua;
+    color: #eee;
+    background-color: #403e36;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
+#integrantesTitulo {
+    font-size: 1.2rem;
+    color: #fff;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#frontTitulo {
+    color: #69a1ac;
+}
+
+#frontIntegrantes {
+    color: #69a1ac;
+}
+
+#backTitulo {
+    color: #c1dee2;
+}
+
+#backIntegrantes {
+    color: #c1dee2;
+}
+
+#emailPerfil {
+    font-weight: normal;
+}
+
+.subtituloMateria {
+    font-weight: bold;
+}
+
+#materiaNombre {
+    font-weight: normal;
+}
+
+.contenido {
+    text-align: center;
+}
+
+.user2nombre {
+    font-weight: normal;
+}

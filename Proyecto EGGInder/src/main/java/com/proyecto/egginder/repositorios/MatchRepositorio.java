@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MatchRepositorio extends JpaRepository<Match, String>{
-    
+
 }

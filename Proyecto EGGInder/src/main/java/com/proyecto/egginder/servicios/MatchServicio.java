@@ -5,7 +5,6 @@ import com.proyecto.egginder.entidades.Match;
 import com.proyecto.egginder.repositorios.AlumnoRepositorio;
 import com.proyecto.egginder.repositorios.MatchRepositorio;
 import com.proyecto.egginder.repositorios.MateriaRepositorio;
-import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,8 +26,8 @@ public class MatchServicio {
     public Match crearMatch(Alumno alumno1, Alumno alumno2) throws Exception{
         validar(alumno1, alumno2);
         
-        if (alumno1.getVotoAprender().getMateria().getNombre()
-                .equals(alumno2.getVotoEnseniar().getMateria().getNombre())) {
+        if (alumno1.getVoto().getMateria().getNombre()
+                .equals(alumno2.getVoto().getMateria().getNombre())) {
             Match match = new Match();
             match.setAlumno1(alumno1);
             match.setAlumno2(alumno2);
@@ -73,13 +72,8 @@ public class MatchServicio {
         if (alumno1.getId().equals(alumno2.getId())) {
             throw new Exception("Mismo alumno");
         }
-        if (alumno1.getVotoAprender()==null || alumno2.getVotoEnseniar()==null) {
+        if (alumno1.getVoto()==null || alumno2.getVoto()==null) {
             throw new Exception("No hay voto");
         }
-    }
-    //********
-    @Transactional
-    public List<Match> findAll(){
-        return matchRepositorio.findAll();
     }
 }

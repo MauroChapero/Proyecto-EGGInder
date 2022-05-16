@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie-edge">
     <title>select voto personalizado</title>
-    <link rel="stylesheet" href="/css/soledad/style-votos.css" />
+    <link rel="stylesheet" href="/css/style-votos.css" />
   </head>
   <body>
     <header class="header">
@@ -16,13 +16,16 @@
         /></a>
         <ul class="nav-menu">
           <li class="nav-menu-item">
-            <a href="#" class="nav-menu-link nav-link">inicio</a>
+            <a th:href="@{/inicio}" class="nav-menu-link nav-link">inicio</a>
           </li>
           <li class="nav-menu-item">
-            <a href="#" class="nav-menu-link nav-link">mi perfil</a>
+            <a th:href="@{/perfil/}" class="nav-menu-link nav-link">mi perfil</a>
           </li>
-          <li class="nav-menu-item">
-            <a href="#" class="nav-menu-link nav-link">Cerrar sesión</a>
+          <li class="nav-menu-item" sec:authorize="!isAuthenticated()">
+            <a  th:href="@{/login}" class="nav-link">Iniciar Sesion</a>
+          </li>
+          <li class="nav-menu-item" sec:authorize="isAuthenticated()">
+            <a th:href="@{/logout}" class="nav-link">Desconectarse</a>
           </li>
         </ul>
       </nav>
@@ -31,7 +34,7 @@
       <br>
         <section class="form-editar">
           <div class="edit-mate">
-            <form th:action="@{/perfil/voto}" method="POST" class="formulario materia">
+            <form th:action="@{/perfil/modificar-voto}" method="POST" class="formulario materia">
               <div class="edi">
                 <h1 class="confirme">Editar materia</h1>
               <br>

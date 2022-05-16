@@ -5,9 +5,9 @@
 }
 body{
     font-family: Arial, Helvetica, sans-serif;
-    padding: 90px 20px 0;
+    padding: 90px;
     background-color: #ffcf00;
-    background-image: url(/src/main/resources/static/img/FONDO-PERFIL.png);
+    background-image: url(/img/FONDO-PERFIL.png);
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -78,23 +78,21 @@ body{
     width: 100px;
     height: 30px;
     border-radius: 5px;
-   
+    font-weight: bold;
 
 }
 .btn-editar:hover{
     background-color: #ffcf00; /*estilo cuando paso el mouse*/
       
 }
-.abajo{
+
+.footer{
     height: 4rem;
     font-style: italic;
     float: left;
-    position:relative; 
     margin:0 auto; 
     width:auto;
     position:fixed; 
-    bottom:0; 
+    bottom:5%; 
     z-index:999999;
-
-
 }

@@ -29,7 +29,7 @@ public class MainControlador {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USUARIO')")
     @GetMapping("/inicio")
     public String inicio(){
-        return "/test/inicio";
+        return "/inicio";
     }
     
     @GetMapping("/login")
@@ -45,7 +45,7 @@ public class MainControlador {
     
     @GetMapping("/registro")
         public String formularioPerfil() {
-        return "Proyecto main1";
+        return "registro";
     }
 
     @PostMapping("/registro")
@@ -54,10 +54,10 @@ public class MainControlador {
         try {
             alumnoServicio.crearPerfil(nombre, apellido, email, clave1, clave2);
             model.put("exito", "Perfil creado exitosamente!");
-            return "Proyecto main1";
+            return "redirect:/login";
         } catch (Exception e) {
             model.put("error", e.getMessage());
-            return "Proyecto main1";
+            return "registro";
         }
     }
 }

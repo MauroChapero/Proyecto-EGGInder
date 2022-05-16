@@ -6,23 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie-edge">
     <title>select voto personalizado</title>
-    <link rel="stylesheet" href="/src/main/resources/static/css/style-votos.css" />
+    <link rel="stylesheet" href="/css/style-votos.css" />
   </head>
   <body>
     <header class="header">
       <nav class="nav">
         <a href="#"
-          ><img src="/src/main/resources/static/img/logo egginder.png" align-left width="150" height="120"
+        ><img src="/img/logo egginder.png" align-left width="150" height="120"
         /></a>
         <ul class="nav-menu">
           <li class="nav-menu-item">
-            <a href="#" class="nav-menu-link nav-link">inicio</a>
+            <a th:href="@{/inicio}" class="nav-menu-link nav-link">inicio</a>
           </li>
           <li class="nav-menu-item">
-            <a href="#" class="nav-menu-link nav-link">mi perfil</a>
+            <a th:href="@{/perfil/ver/}" class="nav-menu-link nav-link">mi perfil</a>
           </li>
-          <li class="nav-menu-item">
-            <a href="#" class="nav-menu-link nav-link">Cerrar sesión</a>
+          <li class="nav-menu-item" sec:authorize="!isAuthenticated()">
+            <a  th:href="@{/login}" class="nav-link">Iniciar Sesion</a>
+          </li>
+          <li class="nav-menu-item" sec:authorize="isAuthenticated()">
+            <a th:href="@{/logout}" class="nav-link">Desconectarse</a>
           </li>
         </ul>
       </nav>
@@ -34,24 +37,20 @@
             <h2>Editar datos personales</h2>
         </div>
         <br>
-        <form class="editardatos">
+        <form th:action="@{/perfil/modificar-perfil}" method="POST" class="editardatos">
             <div class="contenedor-datos">
                 <div class="contenedor-input">
                     <i class="fa-solid fa-user"></i>
-                    <input class="controls" type="text" name="nombre" id="nombres" placeholder="Nombre">
+                    <input class="controls" type="text" name="nombre" id="nombres" placeholder="Nombre" th:value="${usuario.nombre}">
                 </div>
                 <div class="contenedor-input">
                     <i class="fa-solid fa-user"></i>
-                    <input class="controls" type="text" name="apellido" id="apellidos" placeholder="Apellido">
+                    <input class="controls" type="text" name="apellido" id="apellidos" placeholder="Apellido" th:value="${usuario.apellido}">
                 </div>
                 <div class="contenedor-input">
                     <i class="fa-solid fa-envelope"></i>
-                    <input class="controls"  type="email" name="email" id="correo" placeholder="Correo">
+                    <input class="controls"  type="email" name="email" id="correo" placeholder="Correo" th:value="${usuario.email}">
                 </div>
-                <div class="contenedor-input">
-                  <i class="fa-solid fa-envelope"></i>
-                  <input class="controls"  type="materia" name="materia" id="voto" placeholder="Materia">
-              </div>
                 <br>
                 <div class="confirme">
                   <h3>Para confirmar los cambios ingrese su contraseña</h3>
@@ -63,29 +62,32 @@
                 </div>
                 <div class="contenedor-input">
                     <i class="fa-solid fa-unlock"></i>
-                    <input class="controls"  type="password" name="clave2" id="reingrese-contraseña" placeholder="Reingrese su Contraseña">
+                    <input class="controls"  type="password" name="clave2" id="confirme-contraseña" placeholder="Confirme su Contraseña">
                 </div>
                 <br>
                 <br>
                 <div>
-                    <button class="btn-editar"><b>¡LISTO!</b></button>
+                    <button type="submit" class="btn-editar"><b>¡LISTO!</b></button>
                 </div>
             </div>
         </form>
-
+        <div>
+          <button class="btn-editar">
+            <a th:href="@{/perfil/modificar-clave}" class="urlClave">Modificar Clave</a>
+          </button>
+        </div>
+        <article th:if="${exito}!=null">
+          <h5 class="validacionExito">EXITO</h5>
+          <p th:text="${exito}"></p>
+      </article>
+      <article th:if="${error}!=null">
+          <h4 class="validacionError">¡Ha ocurrido un error!</h4>
+          <p th:text="${error}"></p>
+      </article>
     </main>
     <footer>
-      <div class="abajo">
-        <h4 class="resp">Egg-inder es una sociedad sin fines de lucro</h4>
-        <li><h5>Desarrolladores</h5></li>
-        <ul>Galvan Leandro</ul>
-        <ul>Maldonado Silvana</ul>
-        <ul>Rojas Miguel</ul>
-        <ul>Chapero Mauro</ul>
-        <ul>Manduca Tomás</ul>
-        <ul>Villalba Soledad</ul>
-      </div>
   
     </footer>
+    <script src="https://kit.fontawesome.com/cf27837293.js"></script>
   </body>
 </html>

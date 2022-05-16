@@ -29,28 +29,20 @@ public class Alumno {
     
     //VOTO DEL ALUMNO DE LAS MATERIAS A APRENDER
     @OneToOne
-    private Voto votoAprender;
-    
-    //VOTO DEL ALUMNO DE LAS MATERIAS A ENSEÑAR
-    @OneToOne
-    private Voto votoEnseniar;
+    private Voto voto;
 
-    //CONSTRUCTOR VACIO
     public Alumno() {
     }
-    
-    //CONSTRUCTOR PARAMETRIZADO
-    public Alumno(String nombre, String apellido, String email, String clave, Role rol, Voto votoAprender, Voto votoEnseniar) {
+
+    public Alumno(String nombre, String apellido, String email, String clave, Role rol, Voto voto) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.clave = clave;
         this.rol = rol;
-        this.votoAprender = votoAprender;
-        this.votoEnseniar = votoEnseniar;
+        this.voto = voto;
     }
 
-    //GETTERS Y SETTERS
     public String getId() {
         return id;
     }
@@ -99,20 +91,14 @@ public class Alumno {
         this.rol = rol;
     }
 
-    public Voto getVotoAprender() {
-        return votoAprender;
+    public Voto getVoto() {
+        return voto;
     }
 
-    public void setVotoAprender(Voto votoAprender) {
-        this.votoAprender = votoAprender;
+    public void setVoto(Voto voto) {
+        this.voto = voto;
     }
 
-    public Voto getVotoEnseniar() {
-        return votoEnseniar;
-    }
-
-    public void setVotoEnseniar(Voto votoEnseniar) {
-        this.votoEnseniar = votoEnseniar;
-    }
+    
     
 }

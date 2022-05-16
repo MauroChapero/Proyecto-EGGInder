@@ -7,9 +7,33 @@
     <link href="https://fonts.googleapis.com/css?familly=Monserrat:300,400,600|Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
     <title>mision</title>
-    <link rel="stylesheet" href="../static/css/style-inicio.css">
+    <link rel="stylesheet" href="\css\style-inicio.css">
 </head>
 <body>
+    <nav class="nav">
+        <a href="#"
+          ><img
+            src="/img/logo egginder.png"
+            align-left
+            width="150"
+            height="120"
+        /></a>
+        <ul class="nav-menu">
+          <li class="nav-menu-item">
+            <a th:href="@{/inicio}" class="nav-menu-link nav-link">inicio</a>
+          </li>
+          <li class="nav-menu-item">
+            <a th:href="@{/perfil/}" class="nav-menu-link nav-link">mi perfil</a>
+          </li>
+          <li class="nav-menu-item" sec:authorize="!isAuthenticated()">
+            <a  th:href="@{/login}" class="nav-link">Iniciar Sesion</a>
+          </li>
+          <li class="nav-menu-item" sec:authorize="isAuthenticated()">
+            <a th:href="@{/logout}" class="nav-link">Desconectarse</a>
+          </li>
+        </ul>
+      </nav>
+
     <a href="#modal" class="btn-open-mision">Abrir Misión</a>
     <div class="container-all" id="modal">
         <div class="popup">

@@ -23,12 +23,13 @@
             <a th:href="@{/inicio}" class="nav-menu-link nav-link">inicio</a>
           </li>
           <li class="nav-menu-item">
-            <a th:href="@{/perfil}" class="nav-menu-link nav-link">mi perfil</a>
+            <a th:href="@{/perfil/}" class="nav-menu-link nav-link">mi perfil</a>
           </li>
-          <li class="nav-menu-item">
-            <a th:href="@{/registro}" class="nav-menu-link nav-link"
-              >registrate</a
-            >
+          <li class="nav-menu-item" sec:authorize="!isAuthenticated()">
+            <a  th:href="@{/registro}" class="nav-link">Registrarse</a>
+          </li>
+          <li class="nav-menu-item" sec:authorize="isAuthenticated()">
+            <a th:href="@{/logout}" class="nav-link">Desconectarse</a>
           </li>
         </ul>
       </nav>
@@ -39,35 +40,28 @@
         <div></div>
         <div class="contenedor-input">
           <i class="fa-solid fa-envelope"></i>
-          <input
-            class="input-login"
-            type="email"
-            name="email"
-            placeholder="Email"
-          />
+          <input class="input-login" type="email" name="email" placeholder="Email"/>
         </div>
         <div class="contenedor-input">
           <i class="fa-solid fa-unlock"></i>
-          <input
-            class="input-login"
-            type="password"
-            name="clave"
-            placeholder="Contraseña"
-          />
+          <input class="input-login" type="password" name="clave" placeholder="Contraseña"/>
         </div>
         <button class="btn-login btn-animado">
-            <b>Login</b>
+            <b>Ingresar</b>
             <a href="#"></a>
         </button>
-        <div>
-          <div th:if="${error}!=null">
+        <div class="validaciones">
+          <div th:if="${error}!=null" class="validaciones-error">
             <h4>ERROR</h4>
             <p th:text="${error}"></p>
           </div>
-          <div th:if="${logout}!=null">
+          <div th:if="${logout}!=null" class="validaciones-logout">
             <p th:text="${logout}"></p>
           </div>
         </div>
+      </div>
+      <div class="registrarme-redirect">
+        <p><i>¿No tenes cuenta todavia? <a th:href="@{/registro}">Registrarme</a></i></p>
       </div>
     </form>
   </body>

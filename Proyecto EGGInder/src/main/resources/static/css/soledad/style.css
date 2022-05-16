@@ -1,16 +1,11 @@
 *{
-    padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 body{
     font-family: Arial, Helvetica, sans-serif;
-    padding: 90px;
+    padding: 90px 20px 0;
     background-color: #ffcf00;
-    background-image: url(/img/fondonew.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
 }
 .header {
     background-color: #ffffff;
@@ -22,15 +17,10 @@ body{
 }
 .nav {
     display: flex; /*coloca celdas como cajas*/
-    justify-content: space-around;
-
+    justify-content: space-between;
+ 
 }
-
-.nav img{
-    width: 150px;
-    height: 120px
-}
-
+ 
 .nav-link {
     color: black;
     text-decoration: none;
@@ -43,10 +33,10 @@ body{
 .nav-menu-item {
     font-size: 18px;
     margin: 0 10px;
-    line-height: 80px; 
-    text-transform: uppercase; 
+    line-height: 80px;
+    text-transform: uppercase;
     width: max-content; /*palabra entera*/
-
+ 
 }
 .nav-menu-link {
     padding: 8px 12px; /*ar/ab izq/der*/
@@ -55,6 +45,16 @@ body{
 .nav-menu-link:hover {
     background-color: #ffcf00; /*estilo cuando paso el mouse*/
     transition: 0.5s; /*Transicion suave entre link y link del menu*/
+}
+
+
+body{
+    background-color: #ffcf00;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
  
 /*REGISTRO*/
@@ -68,25 +68,26 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     color: white;
 }
+/*INPUTS*/
+.controls{
+    width: 100%;
+    background: white;
+    padding: 5px;
+    border-radius: 20px;
+    margin-bottom: 17px;
+    border:1px solid #9b9a9a;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    outline: none;
+}
  
 .form-register p{
     height: 40px;
     text-align: center;
     font-size: 16px;
     margin-top: 20px;
-    color: black;
 }
-
-.validacionExito{
-    text-align: center;
-    color:green;
-}
-
-.validacionError{
-    text-align: center;
-    color:red;
-}
-
+ 
 .form-register a{
     color: black;
     text-decoration: none;
@@ -114,7 +115,7 @@ body{
     background-color: black;
     color: white;  
     padding: 6px;
-    text-align: center;
+    padding-left: 90px;
 }
 .rgtr {
     height: 80px;      
@@ -123,35 +124,4 @@ body{
 h1 {
     background-color: white;
     padding-bottom: 2cm;
-}
-/*INPUTS*/
-.contenedor-input {
-    font-size: 14px;
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #999 /*#ffcf00*/;
-    margin-bottom: 20px;
-    border-radius: 20px;
-}
-.controls{
-    border: none;
-    outline: none;
-}
-/*iconos*/
-i {
-    min-width: 45px;
-    text-align: center;
-    color: #999;
-}
-
-.login-redirect {
-    text-align: center;
-}
-
-.login-redirect a{
-    font-size: 18px;
-    font-style: normal;
-    color: #000;
-    text-decoration: none;
-    font-weight: bold;
 }

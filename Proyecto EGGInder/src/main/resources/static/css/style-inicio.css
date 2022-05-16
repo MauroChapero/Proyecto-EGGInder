@@ -1,0 +1,151 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+}
+
+body,
+html{
+    background: #ffcf00;
+}
+/*NAV BAR*/
+
+.nav {
+    background-color: #fff;
+    margin: auto;
+    width: 100%;
+    /* max-width: 1500; */
+    display: flex; /*coloca celdas como cajas*/
+    justify-content: space-around;
+}
+
+/* .nav img {
+    border: rgba(250, 250, 250, .1) 3px solid;
+    border-radius: 5px;
+} */
+
+.nav-link {
+    color: black;
+    text-decoration: none;
+}
+.nav-menu {
+    display: flex;
+    margin-right: 40px; /*espacio entre palabras*/
+    list-style:none; /*Quito puntitos*/
+    align-items: center;
+}
+.nav-menu-item {
+    font-size: 18px;
+    margin: 0 10px;
+    line-height: 80px; 
+    text-transform: uppercase; 
+    width: max-content; /*palabra entera*/
+
+}
+.nav-menu-link {
+    padding: 8px 12px; /*ar/ab izq/der*/
+    border-radius: 5px;
+}
+
+.nav-menu-link:hover {
+    background-color: #ffcf00; /*estilo cuando paso el mouse*/
+    transition: 0.5s; /*Transicion suave entre link y link del menu*/
+}
+
+
+
+/*BOTON MISION*/
+
+.btn-open-mision{
+    position: absolute;
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%);/*EDITAR POSICION*/
+    color: #ffcf00;
+    display: block;
+    background: white;
+    padding: 20px 50px;
+    border-radius: 50px;
+}
+/*fondo oscuro boton abrir--innecesario*/
+.container-all {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 600ms;
+
+}
+.container-all:target .popup {
+    top: 50%;
+    left: 50%;
+    transform: rotate(0deg) translate(-50%, -50%);
+    visibility: visible;
+}
+.container-all:target{
+    background: #463a00;
+    visibility: visible;
+    opacity: 1;
+
+}
+.popup{
+    width: 100%;
+    max-width: 800px;
+    height: 500px;
+    position: relative;
+    display: flex;
+    background: #ffcf00;
+    top: -80%;
+    left: 50%;
+    transform: rotate(90deg) translate(-150%, 230%);
+    transition: all 600ms;
+
+}
+
+.img{
+    width: 40%;
+    background-image: url(/img/mision-men2.png);
+    background-size: cover;
+    background-position: center;
+}
+.container-text{
+    width: 60%;
+    padding: 50px;
+    overflow-y: auto;
+
+}
+
+.container-text h1{
+    font-size: 30px;
+    text-align: center;
+}
+.container-text h3{
+    font-size: 20px;
+    text-align: center;
+}
+.container-text p{
+    margin-top: 20px;
+    font-size: 16px;
+    text-align: center;
+}
+.container-text h2{
+    margin-top: 20px;
+    font-size: 26px;
+    text-align: center;
+}
+
+.btn-close-mision {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    padding: 20px;
+    background: black;
+    color: white;
+    border-radius: 50%;
+    line-height: 10px;
+}
